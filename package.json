@@ -1,0 +1,24 @@
+{
+  "name": "react-native-simple-month-year-picker",
+  "version": "1.0.0",
+  "description": "Simple react native month year picker with modal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iiqbalT/simple-react-native-month-year-picker.git"
+  },
+  "keywords": [
+    "month-year-picker",
+    "modal",
+    "simple-picker"
+  ],
+  "author": "Iqbal Taufiqurrochman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iiqbalT/simple-react-native-month-year-picker/issues"
+  },
+  "homepage": "https://github.com/iiqbalT/simple-react-native-month-year-picker#readme"
+}
