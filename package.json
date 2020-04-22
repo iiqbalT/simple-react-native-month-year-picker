@@ -1,6 +1,6 @@
 {
   "name": "react-native-simple-month-year-picker",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Simple react native month year picker with modal",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,10 @@
   "keywords": [
     "month-year-picker",
     "modal",
-    "simple-picker"
+    "picker",
+    "simple-picker",
+    "react-native-month-picker",
+    "react-native-simple-month-year-picker"
   ],
   "author": "Iqbal Taufiqurrochman",
   "license": "MIT",

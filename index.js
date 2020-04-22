@@ -1,57 +1,100 @@
-import React, { Component } from 'react';
-import { View, Text, Modal, TouchableOpacity } from 'react-native';
-import Constant from 'Constant'
+import React, { useEffect, useState } from 'react';
+import { View, Text, Modal, TouchableOpacity, TouchableHighlight, Dimensions } from 'react-native';
 
-class MonthYearsPicker extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isShow: false,
-            years: new Date().getFullYear(),
-            selectedMonth: Constant.month[new Date().getMonth()],
-        }
-    }
+const MonthYearPicker = (props) => {
+    const month_data = [
+        { key: 1, name: 'January' },
+        { key: 2, name: 'February' },
+        { key: 3, name: 'March' },
+        { key: 4, name: 'April' },
+        { key: 5, name: 'May' },
+        { key: 6, name: 'June' },
+        { key: 7, name: 'July' },
+        { key: 8, name: 'August' },
+        { key: 9, name: 'September' },
+        { key: 10, name: 'October' },
+        { key: 11, name: 'November' },
+        { key: 12, name: 'December' },
+    ]
 
-    render() {
-        const month = Constant.month
-        return (
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={this.props.isShow}
-                onRequestClose={this.props.onRequestClose}
-            >
-                <TouchableOpacity style={{ flex: 1 }} onPress={this.props.onRequestClose}>
-                    <View />
-                </TouchableOpacity>
-                <View style={{ height: 300, backgroundColor: "#FFFFFF" }}>
-                    <View style={{ padding: 15, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <TouchableOpacity onPress={() => this.setState({ years: this.state.years - 1 }, this.props.years(this.state.years))}>
-                            <Text>Prev</Text>
-                        </TouchableOpacity>
-                        <Text>{this.state.years}</Text>
-                        <TouchableOpacity onPress={() => this.setState({ years: this.state.years + 1 }, this.props.years(this.state.years))}>
-                            <Text>Next</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ height: 1, backgroundColor: "#000000" }} />
-                    <View style={{ marginHorizontal: 30, marginVertical: 20, flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center' }}>
-                        {month.map((item, index) => {
-                            return (
-                                <TouchableOpacity key={index} onPress={() => {
-                                    this.setState({ selectedMonth: item.key })
-                                    this.props.month(item)
-                                    this.props.years(this.state.years)
-                                }} style={styles.monthLabel}>
-                                    <Text style={{ textAlign: 'center', fontSize: this.state.selectedMonth == item.key ? 25 : 15 }}>{item.name}</Text>
-                                </TouchableOpacity>
-                            )
-                        })}
-                    </View>
+    const { width, height } = Dimensions.get('window')
+
+    const [month, setMonth] = useState(month_data[new Date().getMonth()])
+    const [year, setYear] = useState(new Date().getFullYear())
+
+    useEffect(() => {
+        props.onChangeYear(year)
+        props.onChangeMonth(month_data[new Date().getMonth()])
+    })
+
+    return (
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={props.isShow}
+            onRequestClose={props.close}
+        >
+            <TouchableHighlight style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }} onPress={props.close}>
+                <View />
+            </TouchableHighlight>
+            <View style={{ flex: 1 / 2, backgroundColor: 'white' }} >
+                <View style={styles.yearContainer}>
+                    <TouchableOpacity onPress={() => {
+                        setYear(year - 1)
+                        props.onChangeYear(year - 1)
+                    }}>
+                        <Text>Prev</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.yearLabel}>{year}</Text>
+                    <TouchableOpacity onPress={() => {
+                        setYear(year + 1)
+                        props.onChangeYear(year + 1)
+                    }}>
+                        <Text>Next</Text>
+                    </TouchableOpacity>
                 </View>
-            </Modal>
-        )
-    }
+                <View style={styles.monthContainer}>
+                    {month_data.map((item, index) =>
+                        <TouchableOpacity
+                            key={index}
+                            onPress={() => {
+                                setMonth(item)
+                                props.onChangeMonth(item)
+                            }}
+                            style={[styles.month, { width: (width / 3), backgroundColor: item.key == month.key ? "blue" : 'white' }]}>
+                            <Text style={{ color: item.key == month.key ? 'white' : 'black' }}>{item.name}</Text>
+                        </TouchableOpacity>
+                    )}
+                </View>
+            </View>
+        </Modal>
+    )
 }
 
-export default { MonthYearsPicker }
+const styles = {
+    yearContainer: {
+        padding: 15,
+        height: 50,
+        borderBottomWidth: 1,
+        borderBottomColor: 'black',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+
+    monthContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: 'wrap'
+    },
+
+    month: {
+        height: 50, alignItems: 'center', justifyContent: 'center',
+    },
+
+    yearLabel: {
+        fontWeight: 'bold', fontSize: 25
+    },
+}
+
+export default MonthYearPicker

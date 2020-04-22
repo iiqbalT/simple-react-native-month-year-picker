@@ -10,14 +10,16 @@ npm install simple-react-native-month-year-picker --save
 
 # how to use
 ```javascript
-import MonthYearsPicker from simple-react-native-month-year-picker
+import MonthYearPicker from 'react-native-simple-month-year-picker';
 ```
 
 ```javascript
-<MontYearsPicker
-    isShow={this.state.pickerMonth}
-    onRequestClose={() => this.setState({ pickerMonth: false })}
-    years={(years) => console.log(years)}
-    month={(month) => console.log(month)}
+<MonthYearPicker
+    isShow={isShow}
+    close={() => setIsShow(false)} //setState isShow to false
+    onChangeYear={(year) => console.log(year)}
+    onChangeMonth={(month) => {
+        console.log(month)
+    }}
 />
 ```
