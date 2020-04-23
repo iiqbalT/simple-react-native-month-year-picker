@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iiqbalT/simple-react-native-month-year-picker.git"
+    "url": "git+https://github.com/iiqbalT/react-native-simple-month-year-picker.git"
   },
   "keywords": [
     "month-year-picker",
@@ -21,7 +21,7 @@
   "author": "Iqbal Taufiqurrochman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iiqbalT/simple-react-native-month-year-picker/issues"
+    "url": "https://github.com/iiqbalT/react-native-simple-month-year-picker/issues"
   },
-  "homepage": "https://github.com/iiqbalT/simple-react-native-month-year-picker#readme"
+  "homepage": "https://github.com/iiqbalT/react-native-simple-month-year-picker#readme"
 }
