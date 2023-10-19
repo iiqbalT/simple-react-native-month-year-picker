@@ -1,3 +1,7 @@
+/**
+ * created by iiqbalt
+ */
+
 import React, { useEffect, useState } from 'react';
 import { View, Text, Modal, TouchableOpacity, TouchableHighlight, Dimensions } from 'react-native';
 
